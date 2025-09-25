@@ -124,7 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Service cards hover effects
-  const serviceCards = document.querySelectorAll(".bg-white.shadow-lg");
+  const serviceCards = document.querySelectorAll(
+    "#services .bg-white.shadow-lg"
+  );
   serviceCards.forEach((card) => {
     card.addEventListener("mouseenter", function () {
       this.style.transform = "translateY(-8px) scale(1.02)";
