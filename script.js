@@ -190,3 +190,139 @@ function showNotification(message, type = "success") {
     }, 300);
   }, 3000);
 }
+
+// Gallery Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  const modal = document.getElementById("gallery-modal");
+  const modalImg = document.getElementById("gallery-modal-img");
+  const closeBtn = document.querySelector(".gallery-close");
+  const prevBtn = document.querySelector(".gallery-prev");
+  const nextBtn = document.querySelector(".gallery-next");
+
+  let currentImageIndex = 0;
+  const images = [];
+
+  // Collect all gallery images
+  galleryItems.forEach((item, index) => {
+    const img = item.querySelector("img");
+    const overlay = item.querySelector(".gallery-overlay h3");
+
+    images.push({
+      src: img.src,
+      alt: img.alt,
+      title: overlay ? overlay.textContent : img.alt,
+    });
+
+    // Add click event to open modal
+    item.addEventListener("click", () => {
+      openModal(index);
+    });
+  });
+
+  function openModal(index) {
+    currentImageIndex = index;
+    modalImg.src = images[index].src;
+    modalImg.alt = images[index].alt;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  function showPrevious() {
+    currentImageIndex =
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+    modalImg.src = images[currentImageIndex].src;
+    modalImg.alt = images[currentImageIndex].alt;
+  }
+
+  function showNext() {
+    currentImageIndex =
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+    modalImg.src = images[currentImageIndex].src;
+    modalImg.alt = images[currentImageIndex].alt;
+  }
+
+  // Event listeners
+  closeBtn.addEventListener("click", closeModal);
+  prevBtn.addEventListener("click", showPrevious);
+  nextBtn.addEventListener("click", showNext);
+
+  // Close modal when clicking outside the image
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (modal.classList.contains("active")) {
+      switch (e.key) {
+        case "Escape":
+          closeModal();
+          break;
+        case "ArrowLeft":
+          showPrevious();
+          break;
+        case "ArrowRight":
+          showNext();
+          break;
+      }
+    }
+  });
+
+  // Touch/swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  modal.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  modal.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        showNext(); // Swipe left, show next
+      } else {
+        showPrevious(); // Swipe right, show previous
+      }
+    }
+  }
+
+  // Lazy loading for gallery images
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "50px 0px 50px 0px",
+  };
+
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+          imageObserver.unobserve(img);
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all gallery images for lazy loading
+  document.querySelectorAll(".gallery-item img[data-src]").forEach((img) => {
+    imageObserver.observe(img);
+  });
+});
