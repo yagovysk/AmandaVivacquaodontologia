@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenuButton.classList.add("active");
     mobileMenu.classList.add("active");
     mobileMenuOverlay.classList.remove("hidden");
+    document.body.classList.add("menu-open");
     document.body.style.overflow = "hidden";
   });
 
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenuButton.classList.remove("active");
     mobileMenu.classList.remove("active");
     mobileMenuOverlay.classList.add("hidden");
+    document.body.classList.remove("menu-open");
     document.body.style.overflow = "auto";
   }
 
@@ -170,9 +172,8 @@ function animateCounter(element, target, duration = 2000) {
 
 function showNotification(message, type = "success") {
   const notification = document.createElement("div");
-  notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 text-white ${
-    type === "success" ? "bg-green-500" : "bg-red-500"
-  }`;
+  notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 text-white ${type === "success" ? "bg-green-500" : "bg-red-500"
+    }`;
   notification.textContent = message;
   notification.style.transform = "translateX(100%)";
   notification.style.transition = "transform 0.3s ease";
