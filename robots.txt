@@ -1,0 +1,45 @@
+# Robots.txt para Vivacqua Odontologia
+# Site: Vivacqua Odontologia - Alameda Shopping Empresarial, Taguatinga Centro DF
+# Especialidades: Odontologia do Esporte, Prevenção, Clareamento, Endodontia
+
+User-agent: *
+Allow: /
+
+# Permitir acesso a todos os arquivos principais
+Allow: /index.html
+Allow: /script.js
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.ico
+
+# Bloquear arquivos desnecessários para SEO
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /node_modules/
+Disallow: *.log
+Disallow: *.tmp
+Disallow: *.bak
+
+# Configurações específicas para diferentes bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap (adicione quando criar um)
+# Sitemap: https://seudominio.com/sitemap.xml
+
+# Crawl-delay para bots mais agressivos
+User-agent: *
+Crawl-delay: 1
