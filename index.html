@@ -401,10 +401,329 @@
         right: 30px;
       }
 
+      /* Accessibility Styles */
+      .accessibility-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 9999;
+        background: linear-gradient(135deg, #009688, #00796B);
+        color: white;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 150, 136, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+      }
+
+      .accessibility-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 150, 136, 0.6);
+      }
+
+      .accessibility-btn:active {
+        transform: scale(0.95);
+      }
+
+      .accessibility-btn:focus {
+        outline: 2px solid #4DB6AC;
+        outline-offset: 2px;
+      }
+
+      .accessibility-menu {
+        position: fixed;
+        right: 20px;
+        bottom: 90px;
+        z-index: 9998;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        width: 280px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+      }
+
+      .accessibility-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .accessibility-menu h3 {
+        color: #009688;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .accessibility-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .accessibility-option:last-child {
+        border-bottom: none;
+      }
+
+      .accessibility-option label {
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+      }
+
+      .accessibility-btn-control {
+        background: #009688;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .accessibility-btn-control:hover {
+        background: #00796B;
+        transform: scale(1.05);
+      }
+
+      /* Dark Mode Styles */
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+      }
+
+      body.dark-mode header {
+        background-color: #2d2d2d;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      body.dark-mode .bg-white {
+        background-color: #2d2d2d !important;
+      }
+
+      body.dark-mode .bg-gray-50 {
+        background-color: #1a1a1a !important;
+      }
+
+      body.dark-mode .text-gray-700,
+      body.dark-mode .text-gray-600,
+      body.dark-mode .text-gray-800 {
+        color: #e0e0e0 !important;
+      }
+
+      body.dark-mode footer {
+        background-color: #0d0d0d;
+      }
+
+      /* High Contrast Mode */
+      body.high-contrast main,
+      body.high-contrast header,
+      body.high-contrast footer {
+        filter: contrast(1.5);
+      }
+
+      /* Ensure accessibility buttons are not affected by high contrast filter */
+      body.high-contrast .accessibility-btn,
+      body.high-contrast .accessibility-menu {
+        filter: none;
+        position: fixed !important;
+      }
+
+      /* Font Size Adjustments */
+      body.font-small {
+        font-size: 14px;
+      }
+
+      body.font-medium {
+        font-size: 16px;
+      }
+
+      body.font-large {
+        font-size: 18px;
+      }
+
+      body.font-xlarge {
+        font-size: 20px;
+      }
+
+      /* Accessibility Toggle Switch */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.3s;
+        border-radius: 24px;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+      }
+
+      input:checked+.toggle-slider {
+        background-color: #009688;
+      }
+
+      input:checked+.toggle-slider:before {
+        transform: translateX(26px);
+      }
+
+      /* Prevent button from being hidden */
+      .accessibility-btn,
+      .accessibility-menu {
+        pointer-events: auto;
+      }
+
+      /* Ensure button is always visible */
+      body .accessibility-btn {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+
+      /* Responsive Accessibility Button */
+      @media (max-width: 640px) {
+        .accessibility-btn {
+          width: 50px;
+          height: 50px;
+          right: 15px;
+          bottom: 15px;
+        }
+
+        .accessibility-menu {
+          right: 15px;
+          bottom: 75px;
+          width: calc(100vw - 30px);
+          max-width: 320px;
+        }
+      }
+
     </style>
   </head>
 
-  <body class="bg-gray-50 font-sans">
+  <body class="bg-gray-50 font-sans font-medium">
+    <!-- Accessibility Button -->
+    <button id="accessibility-btn" class="accessibility-btn" aria-label="Menu de Acessibilidade" aria-expanded="false"
+      aria-controls="accessibility-menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <circle cx="12" cy="6" r="2"></circle>
+        <path d="M12 10v4"></path>
+        <path d="M12 14l3 3"></path>
+        <path d="M12 14l-3 3"></path>
+        <path d="M8 11h8"></path>
+      </svg>
+    </button>
+
+    <!-- Accessibility Menu -->
+    <div id="accessibility-menu" class="accessibility-menu">
+      <h3>Acessibilidade</h3>
+
+      <!-- Dark/Light Mode -->
+      <div class="accessibility-option">
+        <label for="dark-mode-toggle">
+          <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+          Modo Escuro
+        </label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="dark-mode-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- High Contrast -->
+      <div class="accessibility-option">
+        <label for="high-contrast-toggle">
+          <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+            </path>
+          </svg>
+          Alto Contraste
+        </label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="high-contrast-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- Font Size -->
+      <div class="accessibility-option" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+        <label style="display: flex; align-items: center;">
+          <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129">
+            </path>
+          </svg>
+          Tamanho da Fonte
+        </label>
+        <div style="display: flex; gap: 8px; width: 100%;">
+          <button class="accessibility-btn-control font-size-btn" data-size="small"
+            style="flex: 1; padding: 6px;">A-</button>
+          <button class="accessibility-btn-control font-size-btn" data-size="medium"
+            style="flex: 1; padding: 6px;">A</button>
+          <button class="accessibility-btn-control font-size-btn" data-size="large"
+            style="flex: 1; padding: 6px;">A+</button>
+          <button class="accessibility-btn-control font-size-btn" data-size="xlarge"
+            style="flex: 1; padding: 6px;">A++</button>
+        </div>
+      </div>
+
+      <!-- Reset Button -->
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #e0e0e0;">
+        <button id="reset-accessibility" class="accessibility-btn-control" style="width: 100%; background: #f44336;">
+          <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+            </path>
+          </svg>
+          Restaurar Padrão
+        </button>
+      </div>
+    </div>
+
     <!-- Header/Navigation -->
     <header class="bg-white shadow-lg fixed w-full top-0 z-50">
       <nav class="container mx-auto px-3 sm:px-4 py-3">
@@ -1193,6 +1512,191 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      // Accessibility Features Script
+      document.addEventListener('DOMContentLoaded', function () {
+        const accessibilityBtn = document.getElementById('accessibility-btn');
+        const accessibilityMenu = document.getElementById('accessibility-menu');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const highContrastToggle = document.getElementById('high-contrast-toggle');
+        const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+        const resetBtn = document.getElementById('reset-accessibility');
+
+        // Load saved preferences
+        loadPreferences();
+
+        // Toggle Accessibility Menu
+        accessibilityBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const isActive = accessibilityMenu.classList.contains('active');
+          accessibilityMenu.classList.toggle('active');
+
+          // Update ARIA attributes
+          accessibilityBtn.setAttribute('aria-expanded', !isActive);
+
+          console.log('Menu toggled:', !isActive); // Debug log
+        });
+
+        // Prevent menu from closing when clicking inside it
+        accessibilityMenu.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+          if (!accessibilityMenu.contains(e.target) && !accessibilityBtn.contains(e.target)) {
+            accessibilityMenu.classList.remove('active');
+            accessibilityBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Dark Mode Toggle
+        darkModeToggle.addEventListener('change', function () {
+          document.body.classList.toggle('dark-mode', this.checked);
+          localStorage.setItem('darkMode', this.checked);
+          updateAccessibilityIcon();
+        });
+
+        // High Contrast Toggle
+        highContrastToggle.addEventListener('change', function () {
+          document.body.classList.toggle('high-contrast', this.checked);
+          localStorage.setItem('highContrast', this.checked);
+        });
+
+        // Font Size Buttons
+        fontSizeBtns.forEach(btn => {
+          btn.addEventListener('click', function () {
+            const size = this.getAttribute('data-size');
+
+            // Remove all font size classes
+            document.body.classList.remove('font-small', 'font-medium', 'font-large', 'font-xlarge');
+
+            // Add selected font size class
+            document.body.classList.add('font-' + size);
+
+            // Update button styles
+            fontSizeBtns.forEach(b => b.style.background = '#009688');
+            this.style.background = '#00796B';
+
+            localStorage.setItem('fontSize', size);
+          });
+        });
+
+        // Reset Accessibility Settings
+        resetBtn.addEventListener('click', function () {
+          // Clear localStorage
+          localStorage.removeItem('darkMode');
+          localStorage.removeItem('highContrast');
+          localStorage.removeItem('fontSize');
+
+          // Reset UI
+          document.body.classList.remove('dark-mode', 'high-contrast', 'font-small', 'font-medium', 'font-large', 'font-xlarge');
+          document.body.classList.add('font-medium');
+          darkModeToggle.checked = false;
+          highContrastToggle.checked = false;
+
+          // Reset button styles
+          fontSizeBtns.forEach(b => b.style.background = '#009688');
+
+          updateAccessibilityIcon();
+
+          // Show feedback
+          const originalText = this.innerHTML;
+          this.innerHTML = '<svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Restaurado!';
+          setTimeout(() => {
+            this.innerHTML = originalText;
+          }, 2000);
+        });
+
+        // Load saved preferences
+        function loadPreferences() {
+          // Dark Mode
+          const darkMode = localStorage.getItem('darkMode') === 'true';
+          if (darkMode) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+          }
+
+          // High Contrast
+          const highContrast = localStorage.getItem('highContrast') === 'true';
+          if (highContrast) {
+            document.body.classList.add('high-contrast');
+            highContrastToggle.checked = true;
+          }
+
+          // Font Size
+          const fontSize = localStorage.getItem('fontSize') || 'medium';
+          document.body.classList.add('font-' + fontSize);
+
+          // Update button styles
+          fontSizeBtns.forEach(btn => {
+            if (btn.getAttribute('data-size') === fontSize) {
+              btn.style.background = '#00796B';
+            }
+          });
+
+          updateAccessibilityIcon();
+        }
+
+        // Update Accessibility Icon based on dark mode
+        function updateAccessibilityIcon() {
+          const isDark = document.body.classList.contains('dark-mode');
+          const icon = accessibilityBtn.querySelector('svg');
+
+          if (isDark) {
+            // Moon icon
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>';
+          } else {
+            // Sun icon
+            icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+          }
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', function (e) {
+          // Press 'A' to toggle accessibility menu
+          if (e.key === 'a' && e.altKey) {
+            e.preventDefault();
+            accessibilityMenu.classList.toggle('active');
+          }
+
+          // Press 'Escape' to close menu
+          if (e.key === 'Escape') {
+            accessibilityMenu.classList.remove('active');
+          }
+        });
+
+        // ARIA announcements
+        const announcer = document.createElement('div');
+        announcer.setAttribute('role', 'status');
+        announcer.setAttribute('aria-live', 'polite');
+        announcer.setAttribute('aria-atomic', 'true');
+        announcer.style.position = 'absolute';
+        announcer.style.left = '-10000px';
+        announcer.style.width = '1px';
+        announcer.style.height = '1px';
+        announcer.style.overflow = 'hidden';
+        document.body.appendChild(announcer);
+
+        function announce(message) {
+          announcer.textContent = '';
+          setTimeout(() => {
+            announcer.textContent = message;
+          }, 100);
+        }
+
+        // Announce changes
+        darkModeToggle.addEventListener('change', () => {
+          announce(darkModeToggle.checked ? 'Modo escuro ativado' : 'Modo claro ativado');
+        });
+
+        highContrastToggle.addEventListener('change', () => {
+          announce(highContrastToggle.checked ? 'Alto contraste ativado' : 'Alto contraste desativado');
+        });
+      });
+    </script>
 
     <script src="script.js"></script>
   </body>
