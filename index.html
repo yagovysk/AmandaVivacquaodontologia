@@ -14,7 +14,23 @@
     <meta name="geo.position" content="-15.8267;-48.0583" />
     <meta name="ICBM" content="-15.8267, -48.0583" />
     <meta name="author" content="Vivacqua Odontologia" />
+    <meta name="developer" content="TogyroGroup - Yago Cerqueira Regis" />
+    <meta name="designer" content="TogyroGroup - togyrogroupvictory.com.br" />
+    <meta name="copyright" content="© 2025 Vivacqua Odontologia. Website desenvolvido por TogyroGroup" />
     <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vivacqua Odontologia - Taguatinga Centro DF" />
+    <meta property="og:description"
+      content="Odontologia de excelência com humanidade e clareza. Especializada em Odontologia do Esporte." />
+    <meta property="og:site_name" content="Vivacqua Odontologia" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vivacqua Odontologia - Taguatinga Centro DF" />
+    <meta name="twitter:description" content="Odontologia de excelência com humanidade e clareza." />
+
     <link rel="icon" type="image/png" href="assets/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,6 +47,30 @@
       };
     </script>
     <style>
+      /* Skip to main content link - accessible */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .focus\:not-sr-only:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0.5rem 1rem;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+      }
+
       .menu-item::after {
         content: "";
         position: absolute;
@@ -724,43 +764,49 @@
       </div>
     </div>
 
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded">
+      Pular para o conteúdo principal
+    </a>
+
     <!-- Header/Navigation -->
-    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
-      <nav class="container mx-auto px-3 sm:px-4 py-3">
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50" role="banner">
+      <nav class="container mx-auto px-3 sm:px-4 py-3" role="navigation" aria-label="Menu principal">
         <div class="flex justify-between items-center">
           <!-- Logo -->
           <div class="flex items-center space-x-2 sm:space-x-3">
-            <img src="assets/logo.png" alt="Vivacqua Odontologia" class="h-10 sm:h-12 w-auto" />
+            <img src="assets/logo.png" alt="Logo Vivacqua Odontologia" class="h-10 sm:h-12 w-auto" />
             <div>
-              <h1 class="text-lg sm:text-xl font-bold text-primary">Vivacqua</h1>
+              <p class="text-lg sm:text-xl font-bold text-primary">Vivacqua</p>
               <p class="text-xs sm:text-sm text-gray-600">Odontologia</p>
             </div>
           </div>
 
           <!-- Desktop Menu -->
-          <ul class="hidden lg:flex space-x-6 xl:space-x-8">
-            <li>
-              <a href="#home"
+          <ul class="hidden lg:flex space-x-6 xl:space-x-8" role="menubar">
+            <li role="none">
+              <a href="#home" role="menuitem"
                 class="menu-item relative text-gray-700 hover:text-accent transition-colors duration-300 py-2 text-sm xl:text-base">Início</a>
             </li>
-            <li>
-              <a href="#about"
+            <li role="none">
+              <a href="#about" role="menuitem"
                 class="menu-item relative text-gray-700 hover:text-accent transition-colors duration-300 py-2 text-sm xl:text-base">Sobre</a>
             </li>
-            <li>
-              <a href="#services"
+            <li role="none">
+              <a href="#services" role="menuitem"
                 class="menu-item relative text-gray-700 hover:text-accent transition-colors duration-300 py-2 text-sm xl:text-base">Serviços</a>
             </li>
-            <li>
-              <a href="#team"
+            <li role="none">
+              <a href="#team" role="menuitem"
                 class="menu-item relative text-gray-700 hover:text-accent transition-colors duration-300 py-2 text-sm xl:text-base">Equipe</a>
             </li>
-            <li>
-              <a href="#gallery"
+            <li role="none">
+              <a href="#gallery" role="menuitem"
                 class="menu-item relative text-gray-700 hover:text-accent transition-colors duration-300 py-2 text-sm xl:text-base">Galeria</a>
             </li>
-            <li>
-              <a href="#contact"
+            <li role="none">
+              <a href="#contact" role="menuitem"
                 class="menu-item relative text-gray-700 hover:text-accent transition-colors duration-300 py-2 text-sm xl:text-base">Contato</a>
             </li>
           </ul>
@@ -775,28 +821,30 @@
 
           <!-- Mobile Menu Button -->
           <div class="lg:hidden">
-            <button id="mobile-menu-button" class="hamburger">
-              <div class="w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-300 line1"></div>
-              <div class="w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-300 line2"></div>
-              <div class="w-6 h-0.5 bg-gray-700 transition-all duration-300 line3"></div>
+            <button id="mobile-menu-button" class="hamburger" aria-label="Abrir menu de navegação" aria-expanded="false"
+              aria-controls="mobile-menu">
+              <div class="w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-300 line1" aria-hidden="true"></div>
+              <div class="w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-300 line2" aria-hidden="true"></div>
+              <div class="w-6 h-0.5 bg-gray-700 transition-all duration-300 line3" aria-hidden="true"></div>
             </button>
           </div>
         </div>
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-          class="mobile-menu fixed top-0 right-0 w-full max-w-sm h-full bg-white shadow-2xl z-40 lg:hidden">
+          class="mobile-menu fixed top-0 right-0 w-full max-w-sm h-full bg-white shadow-2xl z-40 lg:hidden"
+          role="dialog" aria-label="Menu de navegação mobile" aria-modal="true">
           <div class="p-4 sm:p-6 h-full overflow-y-auto">
             <div class="flex justify-between items-center mb-6 sm:mb-8">
               <div class="flex items-center space-x-2">
-                <img src="assets/logo.png" alt="Vivacqua Odontologia" class="h-8 sm:h-10 w-auto" />
+                <img src="assets/logo.png" alt="Logo Vivacqua Odontologia" class="h-8 sm:h-10 w-auto" />
                 <div>
-                  <h2 class="text-base sm:text-lg font-bold text-primary">Vivacqua</h2>
+                  <p class="text-base sm:text-lg font-bold text-primary">Vivacqua</p>
                   <p class="text-xs sm:text-sm text-gray-600">Odontologia</p>
                 </div>
               </div>
-              <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700" aria-label="Fechar menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
@@ -845,9 +893,10 @@
     </header>
 
     <!-- Main Content -->
-    <main class="pt-20">
+    <main class="pt-20" id="main-content" role="main">
       <!-- Hero Section -->
-      <section id="home" class="bg-gradient-to-r from-primary to-secondary text-white py-16 sm:py-20">
+      <section id="home" class="bg-gradient-to-r from-primary to-secondary text-white py-16 sm:py-20"
+        aria-label="Apresentação">
         <div class="container mx-auto px-4 sm:px-6 text-center">
           <div class="fade-in">
             <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
@@ -873,10 +922,10 @@
       </section>
 
       <!-- About Section -->
-      <section id="about" class="py-20 bg-white">
+      <section id="about" class="py-20 bg-white" aria-labelledby="about-heading">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12 scroll-element">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 id="about-heading" class="text-3xl md:text-4xl font-bold text-primary mb-4">
               Sobre a Vivacqua Odontologia
             </h2>
             <p class="text-gray-600 text-lg max-w-3xl mx-auto">
@@ -887,7 +936,8 @@
 
           <div class="grid md:grid-cols-3 gap-8 mt-16">
             <div class="text-center scroll-element delay-100">
-              <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                aria-hidden="true">
                 <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -902,7 +952,8 @@
             </div>
 
             <div class="text-center scroll-element delay-200">
-              <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                aria-hidden="true">
                 <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
@@ -918,7 +969,8 @@
             </div>
 
             <div class="text-center scroll-element delay-300">
-              <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                aria-hidden="true">
                 <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
@@ -937,7 +989,8 @@
       </section>
 
       <!-- Dra. Amanda Section -->
-      <section id="dra-amanda" class="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+      <section id="dra-amanda" class="py-20 bg-gradient-to-br from-primary/5 to-accent/5"
+        aria-labelledby="dra-amanda-heading">
         <div class="container mx-auto px-4">
           <div class="max-w-5xl mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -986,12 +1039,13 @@
                     </span>
                   </div>
 
-                  <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  <h2 id="dra-amanda-heading" class="text-3xl md:text-4xl font-bold text-primary mb-2">
                     Conheça a Dra. Amanda Vivacqua
                   </h2>
                   <p class="text-gray-600 text-lg mb-4">
                     <span class="inline-flex items-center">
-                      <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
@@ -1053,10 +1107,10 @@
       </section>
 
       <!-- Services Section -->
-      <section id="services" class="py-20 bg-gray-50">
+      <section id="services" class="py-20 bg-gray-50" aria-labelledby="services-heading">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12 scroll-element">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 id="services-heading" class="text-3xl md:text-4xl font-bold text-primary mb-4">
               Nossos Serviços
             </h2>
             <p class="text-gray-600 text-lg">
@@ -1066,10 +1120,11 @@
           </div>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div
+            <article
               class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 scroll-element-scale delay-100">
               <div class="text-center">
-                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  aria-hidden="true">
                   <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a1.5 1.5 0 001.5-1.5V7a4 4 0 118 0v1.5a1.5 1.5 0 001.5 1.5H21">
@@ -1083,12 +1138,13 @@
                   Recupere o branco natural dos seus dentes
                 </p>
               </div>
-            </div>
+            </article>
 
-            <div
+            <article
               class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 scroll-element-scale delay-200">
               <div class="text-center">
-                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  aria-hidden="true">
                   <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
@@ -1102,12 +1158,13 @@
                   Limpeza e tratamentos preventivos
                 </p>
               </div>
-            </div>
+            </article>
 
-            <div
+            <article
               class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 scroll-element-scale delay-300">
               <div class="text-center">
-                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  aria-hidden="true">
                   <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -1120,12 +1177,13 @@
                   Especialidade em prevenção e tratamento para atletas
                 </p>
               </div>
-            </div>
+            </article>
 
-            <div
+            <article
               class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 scroll-element-scale delay-400">
               <div class="text-center">
-                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  aria-hidden="true">
                   <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
@@ -1139,16 +1197,16 @@
                   Tratamento de canal e cuidados endodônticos
                 </p>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
       <!-- Team Section -->
-      <section id="team" class="py-20 bg-white">
+      <section id="team" class="py-20 bg-white" aria-labelledby="team-heading">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12 scroll-element">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 id="team-heading" class="text-3xl md:text-4xl font-bold text-primary mb-4">
               Nossa Equipe
             </h2>
             <p class="text-gray-600 text-lg">
@@ -1212,10 +1270,10 @@
       </section>
 
       <!-- Gallery Section -->
-      <section id="gallery" class="py-20 bg-gray-50">
+      <section id="gallery" class="py-20 bg-gray-50" aria-labelledby="gallery-heading">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12 scroll-element">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 id="gallery-heading" class="text-3xl md:text-4xl font-bold text-primary mb-4">
               Nossa Clínica
             </h2>
             <p class="text-gray-600 text-lg">
@@ -1225,10 +1283,11 @@
 
           <div class="gallery-grid">
             <!-- Gallery Item 1 -->
-            <div class="gallery-item scroll-element-scale delay-100" data-gallery="1">
+            <div class="gallery-item scroll-element-scale delay-100" data-gallery="1" role="button" tabindex="0"
+              aria-label="Ver imagem ampliada do Consultório Principal">
               <img src="https://via.placeholder.com/400x300/0369a1/ffffff?text=Consultorio+1"
-                alt="Consultório Principal" />
-              <div class="gallery-overlay">
+                alt="Consultório Principal" loading="lazy" />
+              <div class="gallery-overlay" aria-hidden="true">
                 <div>
                   <h3 class="text-lg font-semibold mb-2">
                     Consultório Principal
@@ -1303,16 +1362,18 @@
       </section>
 
       <!-- Gallery Modal -->
-      <div id="gallery-modal" class="gallery-modal">
-        <span class="gallery-close">&times;</span>
-        <span class="gallery-nav gallery-prev">&#8249;</span>
-        <span class="gallery-nav gallery-next">&#8250;</span>
-        <img id="gallery-modal-img" src="" alt="Gallery Image" />
+      <div id="gallery-modal" class="gallery-modal" role="dialog" aria-modal="true"
+        aria-label="Visualização ampliada da galeria">
+        <button class="gallery-close" aria-label="Fechar galeria">&times;</button>
+        <button class="gallery-nav gallery-prev" aria-label="Imagem anterior">&#8249;</button>
+        <button class="gallery-nav gallery-next" aria-label="Próxima imagem">&#8250;</button>
+        <img id="gallery-modal-img" src="" alt="" />
       </div>
 
       <!-- Appointment Section -->
       <section id="agendar"
-        class="py-20 bg-gradient-to-br from-primary via-secondary to-accent text-white relative overflow-hidden">
+        class="py-20 bg-gradient-to-br from-primary via-secondary to-accent text-white relative overflow-hidden"
+        aria-labelledby="appointment-heading">
         <!-- Background decorative elements -->
         <div class="absolute inset-0 opacity-10">
           <div class="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
@@ -1328,7 +1389,7 @@
                   <span class="text-sm font-semibold tracking-wide">AGENDAMENTO ONLINE</span>
                 </div>
               </div>
-              <h2 class="text-4xl md:text-5xl font-bold mb-4">
+              <h2 id="appointment-heading" class="text-4xl md:text-5xl font-bold mb-4">
                 Agende Sua Consulta
               </h2>
               <p class="text-xl text-teal-50 max-w-2xl mx-auto">
@@ -1412,16 +1473,17 @@
               <div class="mt-8 pt-8 border-t border-gray-200">
                 <p class="text-gray-600 mb-4">Prefere agendar por telefone ou WhatsApp?</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="tel:+5561999999999"
-                    class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-full transition-all duration-300">
+                  <a href="tel:+556198210-0565"
+                    class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 font-semibold px-6 py-3 rounded-full transition-all duration-300"
+                    style="color: #1f2937 !important;">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
                       </path>
                     </svg>
-                    (61) 99999-9999
+                    (61) 98210-0565
                   </a>
-                  <a href="https://wa.me/5561999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta"
+                  <a href="https://wa.me/5561982100565?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta"
                     target="_blank" rel="noopener noreferrer"
                     class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -1449,11 +1511,11 @@
       </section>
 
       <!-- Location Section -->
-      <section id="location" class="py-16 bg-white">
+      <section id="location" class="py-16 bg-white" aria-labelledby="location-heading">
         <div class="container mx-auto px-4">
           <div class="max-w-4xl mx-auto">
             <div class="text-center mb-8 scroll-element">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+              <h2 id="location-heading" class="text-3xl md:text-4xl font-bold text-primary mb-4">
                 Encontre-nos
               </h2>
               <p class="text-gray-600 text-lg">
@@ -1499,17 +1561,110 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-      <div class="container mx-auto px-4 text-center scroll-element">
-        <div class="flex items-center justify-center space-x-3 mb-4">
-          <img src="assets/logo.png" alt="Vivacqua Odontologia" class="h-8 w-auto" />
-          <div>
-            <h3 class="font-bold">Vivacqua Odontologia</h3>
+    <footer class="bg-gray-800 text-white py-12" role="contentinfo">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+          <!-- Logo e Descrição -->
+          <div class="text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start space-x-3 mb-4">
+              <img src="assets/logo.png" alt="Logo Vivacqua Odontologia" class="h-10 w-auto" />
+              <div>
+                <p class="font-bold text-lg">Vivacqua Odontologia</p>
+              </div>
+            </div>
+            <p class="text-gray-400 text-sm">
+              Odontologia de excelência com humanidade e clareza.
+            </p>
+          </div>
+
+          <!-- Contato -->
+          <div class="text-center md:text-left">
+            <h3 class="font-bold text-lg mb-4 text-primary">Contato</h3>
+            <div class="space-y-3">
+              <a href="mailto:odontologiavivacqua@gmail.com"
+                class="flex items-center justify-center md:justify-start text-gray-400 hover:text-white transition-colors duration-300">
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                  </path>
+                </svg>
+                <span class="text-sm">odontologiavivacqua@gmail.com</span>
+              </a>
+              <a href="tel:+556198210-0565"
+                class="flex items-center justify-center md:justify-start text-gray-400 hover:text-white transition-colors duration-300">
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                  </path>
+                </svg>
+                <span class="text-sm">(61) 98210-0565</span>
+              </a>
+              <div class="flex items-center justify-center md:justify-start text-gray-400">
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                  </path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                  </path>
+                </svg>
+                <span class="text-sm">Alameda Shopping Empresarial - Taguatinga Centro DF</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horário de Funcionamento -->
+          <div class="text-center md:text-left">
+            <h3 class="font-bold text-lg mb-4 text-primary">Horário de Funcionamento</h3>
+            <div class="space-y-2 text-sm text-gray-400">
+              <div class="flex items-start justify-center md:justify-start">
+                <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-primary" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                  </path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-white">Segunda à Sexta</p>
+                  <p>8h - 22h</p>
+                </div>
+              </div>
+              <div class="flex items-start justify-center md:justify-start">
+                <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-primary" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                  </path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-white">Sábado e Domingo</p>
+                  <p>14h - 22h</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <p class="text-gray-400">
-          © 2025 Vivacqua Odontologia. Todos os direitos reservados.
-        </p>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-700 pt-6 text-center">
+          <p class="text-gray-400 text-sm mb-2">
+            © 2025 Vivacqua Odontologia. Todos os direitos reservados.
+          </p>
+          <p class="text-gray-500 text-xs">
+            Desenvolvido por
+            <a href="https://togyrogroupvictory.com" target="_blank" rel="noopener noreferrer"
+              class="text-primary hover:text-accent transition-colors duration-300 font-semibold"
+              aria-label="Site desenvolvido por TogyroGroup">
+              TogyroGroup
+            </a>
+            <span class="mx-1">•</span>
+            <span class="text-gray-600">Yago Cerqueira Regis</span>
+          </p>
+        </div>
       </div>
     </footer>
 

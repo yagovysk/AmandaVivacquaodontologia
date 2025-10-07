@@ -10,15 +10,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // Open mobile menu
   mobileMenuButton.addEventListener("click", function () {
     mobileMenuButton.classList.add("active");
+    mobileMenuButton.setAttribute("aria-expanded", "true");
+    mobileMenuButton.setAttribute("aria-label", "Fechar menu de navegação");
     mobileMenu.classList.add("active");
     mobileMenuOverlay.classList.remove("hidden");
     document.body.classList.add("menu-open");
     document.body.style.overflow = "hidden";
+
+    // Focus primeiro item do menu para acessibilidade
+    const firstLink = mobileMenu.querySelector('a');
+    if (firstLink) {
+      setTimeout(() => firstLink.focus(), 100);
+    }
   });
 
   // Close mobile menu function
   function closeMobileMenuFunction() {
     mobileMenuButton.classList.remove("active");
+    mobileMenuButton.setAttribute("aria-expanded", "false");
+    mobileMenuButton.setAttribute("aria-label", "Abrir menu de navegação");
     mobileMenu.classList.remove("active");
     mobileMenuOverlay.classList.add("hidden");
     document.body.classList.remove("menu-open");
@@ -219,6 +229,14 @@ document.addEventListener("DOMContentLoaded", function () {
     item.addEventListener("click", () => {
       openModal(index);
     });
+
+    // Add keyboard support
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal(index);
+      }
+    });
   });
 
   function openModal(index) {
@@ -226,11 +244,16 @@ document.addEventListener("DOMContentLoaded", function () {
     modalImg.src = images[index].src;
     modalImg.alt = images[index].alt;
     modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+
+    // Focus no botão fechar para acessibilidade
+    setTimeout(() => closeBtn.focus(), 100);
   }
 
   function closeModal() {
     modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "auto";
   }
 
@@ -239,6 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
       currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
     modalImg.src = images[currentImageIndex].src;
     modalImg.alt = images[currentImageIndex].alt;
+
+    // Anunciar mudança para leitores de tela
+    announceToScreenReader(`Imagem ${currentImageIndex + 1} de ${images.length}: ${images[currentImageIndex].alt}`);
   }
 
   function showNext() {
@@ -246,6 +272,9 @@ document.addEventListener("DOMContentLoaded", function () {
       currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
     modalImg.src = images[currentImageIndex].src;
     modalImg.alt = images[currentImageIndex].alt;
+
+    // Anunciar mudança para leitores de tela
+    announceToScreenReader(`Imagem ${currentImageIndex + 1} de ${images.length}: ${images[currentImageIndex].alt}`);
   }
 
   // Event listeners
@@ -326,4 +355,29 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".gallery-item img[data-src]").forEach((img) => {
     imageObserver.observe(img);
   });
+});
+
+// Screen reader announcement function
+function announceToScreenReader(message) {
+  const announcer = document.getElementById("aria-live-announcer");
+  if (announcer) {
+    announcer.textContent = message;
+
+    // Clear after announcement
+    setTimeout(() => {
+      announcer.textContent = "";
+    }, 1000);
+  }
+}
+
+// Create aria-live announcer if not exists
+document.addEventListener("DOMContentLoaded", function () {
+  if (!document.getElementById("aria-live-announcer")) {
+    const announcer = document.createElement("div");
+    announcer.id = "aria-live-announcer";
+    announcer.setAttribute("aria-live", "polite");
+    announcer.setAttribute("aria-atomic", "true");
+    announcer.className = "sr-only";
+    document.body.appendChild(announcer);
+  }
 });
