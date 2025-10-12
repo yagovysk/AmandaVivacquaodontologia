@@ -441,6 +441,48 @@
         right: 30px;
       }
 
+      /* Instagram Button in Gallery Modal */
+      .gallery-instagram-btn {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+      }
+
+      .gallery-instagram-btn:hover {
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .gallery-instagram-btn:active {
+        transform: translateX(-50%) scale(0.98);
+      }
+
+      /* Responsive Instagram Button */
+      @media (max-width: 640px) {
+        .gallery-instagram-btn {
+          bottom: 20px;
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+
+        .gallery-instagram-btn svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
       /* Accessibility Styles */
       .accessibility-btn {
         position: fixed;
@@ -1284,13 +1326,13 @@
           <div class="gallery-grid">
             <!-- Gallery Item 1 -->
             <div class="gallery-item scroll-element-scale delay-100" data-gallery="1" role="button" tabindex="0"
-              aria-label="Ver imagem ampliada do Consultório Principal">
-              <img src="https://via.placeholder.com/400x300/0369a1/ffffff?text=Consultorio+1"
-                alt="Consultório Principal" loading="lazy" />
+              aria-label="Ver imagem ampliada do Consultório - Sala de Procedimento">
+              <img src="assets/ImagensClinica/imagem-sala-procedimento-odontologia.jpg"
+                alt="Consultório - Sala de Procedimento Odontológico" loading="lazy" />
               <div class="gallery-overlay" aria-hidden="true">
                 <div>
                   <h3 class="text-lg font-semibold mb-2">
-                    Consultório Principal
+                    Sala de Procedimento
                   </h3>
                   <p class="text-sm">Ambiente moderno e confortável</p>
                 </div>
@@ -1298,9 +1340,10 @@
             </div>
 
             <!-- Gallery Item 2 -->
-            <div class="gallery-item scroll-element-scale delay-200" data-gallery="2">
-              <img src="https://via.placeholder.com/400x300/0284c7/ffffff?text=Recepcao" alt="Recepção" />
-              <div class="gallery-overlay">
+            <div class="gallery-item scroll-element-scale delay-200" data-gallery="2" role="button" tabindex="0"
+              aria-label="Ver imagem ampliada da Recepção">
+              <img src="assets/ImagensClinica/balcao-recepcao.jpg" alt="Balcão de Recepção" loading="lazy" />
+              <div class="gallery-overlay" aria-hidden="true">
                 <div>
                   <h3 class="text-lg font-semibold mb-2">Recepção</h3>
                   <p class="text-sm">Espaço acolhedor para nossos pacientes</p>
@@ -1309,51 +1352,43 @@
             </div>
 
             <!-- Gallery Item 3 -->
-            <div class="gallery-item scroll-element-scale delay-300" data-gallery="3">
-              <img src="https://via.placeholder.com/400x300/06b6d4/ffffff?text=Equipamentos"
-                alt="Equipamentos Modernos" />
-              <div class="gallery-overlay">
+            <div class="gallery-item scroll-element-scale delay-300" data-gallery="3" role="button" tabindex="0"
+              aria-label="Ver imagem ampliada da Sala de Espera">
+              <img src="assets/ImagensClinica/local-espera-recepcao.jpg" alt="Sala de Espera e Recepção"
+                loading="lazy" />
+              <div class="gallery-overlay" aria-hidden="true">
                 <div>
                   <h3 class="text-lg font-semibold mb-2">
-                    Tecnologia Avançada
+                    Sala de Espera
                   </h3>
-                  <p class="text-sm">Equipamentos de última geração</p>
+                  <p class="text-sm">Conforto enquanto você aguarda</p>
                 </div>
               </div>
             </div>
 
             <!-- Gallery Item 4 -->
-            <div class="gallery-item scroll-element-scale delay-100" data-gallery="4">
-              <img src="https://via.placeholder.com/400x300/0369a1/ffffff?text=Sala+Esterilizacao"
-                alt="Sala de Esterilização" />
-              <div class="gallery-overlay">
+            <div class="gallery-item scroll-element-scale delay-100" data-gallery="4" role="button" tabindex="0"
+              aria-label="Ver imagem ampliada da Sala de Operação">
+              <img src="assets/ImagensClinica/imagem-2-sala-de-operacao-clinica.jpg"
+                alt="Sala de Operação - Consultório 2" loading="lazy" />
+              <div class="gallery-overlay" aria-hidden="true">
                 <div>
-                  <h3 class="text-lg font-semibold mb-2">Esterilização</h3>
-                  <p class="text-sm">Máxima segurança e higiene</p>
+                  <h3 class="text-lg font-semibold mb-2">Sala de Operação</h3>
+                  <p class="text-sm">Equipamentos de última geração</p>
                 </div>
               </div>
             </div>
 
             <!-- Gallery Item 5 -->
-            <div class="gallery-item scroll-element-scale delay-200" data-gallery="5">
-              <img src="https://via.placeholder.com/400x300/0284c7/ffffff?text=Consultorio+2" alt="Consultório 2" />
-              <div class="gallery-overlay">
+            <div class="gallery-item scroll-element-scale delay-200" data-gallery="5" role="button" tabindex="0"
+              aria-label="Ver imagem ampliada das Salas da Clínica">
+              <img src="assets/ImagensClinica/imagem-salas.jpg" alt="Salas da Clínica" loading="lazy" />
+              <div class="gallery-overlay" aria-hidden="true">
                 <div>
                   <h3 class="text-lg font-semibold mb-2">
-                    Segundo Consultório
+                    Nossas Salas
                   </h3>
-                  <p class="text-sm">Especializado em procedimentos</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Gallery Item 6 -->
-            <div class="gallery-item scroll-element-scale delay-300" data-gallery="6">
-              <img src="https://via.placeholder.com/400x300/06b6d4/ffffff?text=Sala+Espera" alt="Sala de Espera" />
-              <div class="gallery-overlay">
-                <div>
-                  <h3 class="text-lg font-semibold mb-2">Sala de Espera</h3>
-                  <p class="text-sm">Conforto enquanto você aguarda</p>
+                  <p class="text-sm">Espaços organizados e higiênicos</p>
                 </div>
               </div>
             </div>
@@ -1368,6 +1403,16 @@
         <button class="gallery-nav gallery-prev" aria-label="Imagem anterior">&#8249;</button>
         <button class="gallery-nav gallery-next" aria-label="Próxima imagem">&#8250;</button>
         <img id="gallery-modal-img" src="" alt="" />
+
+        <!-- Instagram Link Button -->
+        <a href="https://www.instagram.com/vivacquaodontologia/" target="_blank" rel="noopener noreferrer"
+          class="gallery-instagram-btn" aria-label="Visite nosso Instagram @vivacquaodontologia">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+          <span class="ml-2">@vivacquaodontologia</span>
+        </a>
       </div>
 
       <!-- Appointment Section -->
