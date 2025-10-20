@@ -483,6 +483,108 @@
         }
       }
 
+      /* Hero Carousel Styles */
+      .hero-carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .carousel-slide {
+        display: none;
+        width: 100%;
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      .carousel-slide.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 16px;
+        cursor: pointer;
+        z-index: 10;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-control:hover {
+        background: rgba(0, 0, 0, 0.8);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-control.prev {
+        left: 20px;
+      }
+
+      .carousel-control.next {
+        right: 20px;
+      }
+
+      .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 10;
+      }
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        border: 2px solid white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .indicator.active {
+        background: white;
+        width: 32px;
+        border-radius: 6px;
+      }
+
+      .indicator:hover {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      @media (max-width: 640px) {
+        .carousel-control {
+          padding: 12px;
+        }
+
+        .carousel-control svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .carousel-control.prev {
+          left: 10px;
+        }
+
+        .carousel-control.next {
+          right: 10px;
+        }
+      }
+
       /* Accessibility Styles */
       .accessibility-btn {
         position: fixed;
@@ -936,30 +1038,118 @@
 
     <!-- Main Content -->
     <main class="pt-20" id="main-content" role="main">
-      <!-- Hero Section -->
-      <section id="home" class="bg-gradient-to-r from-primary to-secondary text-white py-16 sm:py-20"
-        aria-label="Apresentação">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
-          <div class="fade-in">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-              Odontologia de Excelência,<br />
-              <span class="text-accent">feita com Humanidade e Clareza</span>
-            </h1>
-            <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-teal-100 px-2 sm:px-0">
-              Cuidamos do seu sorriso com tecnologia de ponta e atendimento
-              humanizado
-            </p>
-            <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 justify-center">
-              <a href="#contact"
-                class="bg-accent hover:bg-teal-600 text-white px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg transition-colors duration-300">
-                Agende Sua Consulta
-              </a>
-              <a href="#services"
-                class="border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg transition-all duration-300">
-                Nossos Serviços
-              </a>
+      <!-- Hero Carousel Section -->
+      <section id="home" class="relative overflow-hidden" aria-label="Apresentação">
+        <div class="hero-carousel">
+          <!-- Slide 1: Hero Original -->
+          <div class="carousel-slide active">
+            <div class="bg-gradient-to-r from-primary to-secondary text-white py-16 sm:py-20">
+              <div class="container mx-auto px-4 sm:px-6 text-center">
+                <div class="fade-in">
+                  <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                    Odontologia de Excelência,<br />
+                    <span class="text-accent">feita com Humanidade e Clareza</span>
+                  </h1>
+                  <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-teal-100 px-2 sm:px-0">
+                    Cuidamos do seu sorriso com tecnologia de ponta e atendimento humanizado
+                  </p>
+                  <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 justify-center">
+                    <a href="#contact"
+                      class="bg-accent hover:bg-teal-600 text-white px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg transition-colors duration-300">
+                      Agende Sua Consulta
+                    </a>
+                    <a href="#services"
+                      class="border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg transition-all duration-300">
+                      Nossos Serviços
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Slide 2: Vídeo - Tipos de Protetores -->
+          <div class="carousel-slide">
+            <div class="bg-gradient-to-r from-secondary to-primary text-white py-16 sm:py-20">
+              <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center mb-8">
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                    Proteção Profissional para Atletas
+                  </h2>
+                  <p class="text-lg sm:text-xl text-teal-100 mb-6">
+                    Descubra qual protetor bucal é ideal para você
+                  </p>
+                </div>
+                <div class="max-w-3xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <iframe
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/PZyoH2KU0uE"
+                    title="Conheça os Diferentes Tipos de Protetores Bucais Profissionais"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+                <div class="text-center mt-6">
+                  <a href="#contact"
+                    class="inline-block bg-accent hover:bg-teal-600 text-white px-8 py-3 rounded-full text-lg transition-colors duration-300">
+                    Quero um Protetor Profissional
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Vídeo - Comparação -->
+          <div class="carousel-slide">
+            <div class="bg-gradient-to-r from-primary to-accent text-white py-16 sm:py-20">
+              <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center mb-8">
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                    Profissional vs Comum: Veja a Diferença
+                  </h2>
+                  <p class="text-lg sm:text-xl text-teal-100 mb-6">
+                    Entenda por que o protetor profissional é superior
+                  </p>
+                </div>
+                <div class="max-w-3xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl">
+                  <iframe
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/YF2et-TCxVA"
+                    title="Protetor Bucal Profissional vs Protetor Bucal Ferve e Morde"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+                <div class="text-center mt-6">
+                  <a href="#contact"
+                    class="inline-block bg-accent hover:bg-teal-600 text-white px-8 py-3 rounded-full text-lg transition-colors duration-300">
+                    Agendar Avaliação
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control prev" aria-label="Slide anterior">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button class="carousel-control next" aria-label="Próximo slide">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <button class="indicator active" data-slide="0" aria-label="Ir para slide 1"></button>
+          <button class="indicator" data-slide="1" aria-label="Ir para slide 2"></button>
+          <button class="indicator" data-slide="2" aria-label="Ir para slide 3"></button>
         </div>
       </section>
 
@@ -1411,7 +1601,7 @@
           <div class="absolute bottom-10 left-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
 
-        <div class="container mx-auto px-4 relative z-10">
+        <div id="contact" class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto">
             <!-- Header -->
             <div class="text-center mb-12 scroll-element">
