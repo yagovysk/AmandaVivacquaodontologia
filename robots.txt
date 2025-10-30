@@ -37,8 +37,8 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# Sitemap (adicione quando criar um)
-# Sitemap: https://seudominio.com/sitemap.xml
+# Sitemap
+Sitemap: https://vivacquaondontologiadf.com.br/sitemap.xml
 
 # Crawl-delay para bots mais agressivos
 User-agent: *
