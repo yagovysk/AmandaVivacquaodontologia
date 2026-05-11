@@ -527,3 +527,169 @@ document.addEventListener("DOMContentLoaded", function () {
   // Start autoplay
   startAutoPlay();
 });
+
+// Dental Virtual Agent
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.getElementById("dental-agent-panel");
+  const toggleBtn = document.getElementById("dental-agent-toggle");
+  const hint = document.getElementById("dental-agent-hint");
+  const messagesBox = document.getElementById("dental-agent-messages");
+  const form = document.getElementById("dental-agent-form");
+  const input = document.getElementById("dental-agent-input");
+  const chips = document.querySelectorAll(".dental-chip");
+
+  if (!panel || !toggleBtn || !messagesBox || !form || !input) {
+    return;
+  }
+
+  const whatsappUrl =
+    "https://wa.me/556198210565?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta.";
+
+  const initialMessages = [
+    "Bem-vindo(a)! Eu sou o assistente virtual da Vivacqua Odontologia.",
+    "Posso te ajudar com dúvidas sobre serviços, horários, localização e encaminhar para agendamento.",
+  ];
+
+  function normalizeText(text) {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
+  function addMessage(content, sender) {
+    const message = document.createElement("div");
+    message.className = `dental-msg ${sender}`;
+    message.textContent = content;
+    messagesBox.appendChild(message);
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  }
+
+  function addTypingAndReply(reply) {
+    const typing = document.createElement("div");
+    typing.className = "dental-msg bot";
+    typing.textContent = "Digitando...";
+    messagesBox.appendChild(typing);
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+
+    setTimeout(() => {
+      typing.remove();
+      addMessage(reply, "bot");
+    }, 550);
+  }
+
+  function getReply(userMessage) {
+    const text = normalizeText(userMessage);
+
+    if (!text) {
+      return "Pode escrever sua dúvida que eu te ajudo agora.";
+    }
+
+    if (/(oi|ola|bom dia|boa tarde|boa noite|tudo bem)/.test(text)) {
+      return "Olá! Posso te orientar sobre clareamento, prevenção, endodontia, odontologia do esporte, horários e agendamento.";
+    }
+
+    if (/(servico|servicos|tratamento|tratamentos|fazem|oferecem)/.test(text)) {
+      return "A clínica atende Clareamento, Prevenção, Endodontia, Odontologia do Esporte, Periodontia, Cirurgia, Odontopediatria, Restauradora e Prótese.";
+    }
+
+    if (/(esporte|atleta|protetor|bucal)/.test(text)) {
+      return "Sim! A Dra. Amanda é referência em Odontologia do Esporte no DF, incluindo orientação e protetor bucal profissional para atletas.";
+    }
+
+    if (/(clareamento|dente branco|branqueamento)/.test(text)) {
+      return "No clareamento, primeiro é feita uma avaliação para indicar o protocolo ideal e seguro para seu caso. Se quiser, já te encaminho para agendar avaliação.";
+    }
+
+    if (/(endodontia|canal|dor no dente)/.test(text)) {
+      return "A clínica realiza Endodontia (tratamento de canal) com foco em aliviar dor e preservar o dente. O ideal é avaliar clinicamente para definir urgência.";
+    }
+
+    if (/(prevencao|limpeza|profilaxia|manutencao)/.test(text)) {
+      return "Em prevenção, fazemos limpeza e acompanhamento para reduzir risco de cárie e problemas gengivais, mantendo sua saúde bucal em dia.";
+    }
+
+    if (/(horario|horarios|funcionamento|aberto|atendimento)/.test(text)) {
+      return "Horários: Segunda a Sexta, 08:00 às 22:00. Sábado e Domingo, 14:00 às 22:00.";
+    }
+
+    if (/(onde|endereco|localizacao|mapa|taguatinga)/.test(text)) {
+      return "A clínica fica no Alameda Shopping Empresarial, Taguatinga Centro - DF.";
+    }
+
+    if (/(contato|telefone|whatsapp|numero)/.test(text)) {
+      return "Você pode falar com a clínica pelo WhatsApp/telefone: (61) 98210-0565.";
+    }
+
+    if (/(preco|valor|quanto custa|orcamento)/.test(text)) {
+      return "Os valores dependem do tipo de tratamento e da avaliação clínica. Posso te encaminhar para um atendimento rápido no WhatsApp e orçamento personalizado.";
+    }
+
+    if (/(agendar|consulta|marcar)/.test(text)) {
+      return "Perfeito! Para agendar sua consulta agora, clique no botão de WhatsApp: " + whatsappUrl;
+    }
+
+    return "Posso te ajudar com serviços, horários, localização, contato e agendamento. Se preferir, me diga: clareamento, esporte, canal, prevenção ou consulta.";
+  }
+
+  function handleUserMessage(text) {
+    addMessage(text, "user");
+    const reply = getReply(text);
+    addTypingAndReply(reply);
+  }
+
+  function togglePanel() {
+    const isActive = panel.classList.contains("active");
+    panel.classList.toggle("active", !isActive);
+    toggleBtn.setAttribute("aria-expanded", String(!isActive));
+
+    if (hint) {
+      hint.classList.add("hidden");
+    }
+
+    if (!isActive) {
+      setTimeout(() => input.focus(), 80);
+    }
+  }
+
+  toggleBtn.addEventListener("click", function () {
+    togglePanel();
+  });
+
+  document.addEventListener("click", function (event) {
+    const clickedInsidePanel = panel.contains(event.target);
+    const clickedToggle = toggleBtn.contains(event.target);
+    if (!clickedInsidePanel && !clickedToggle) {
+      panel.classList.remove("active");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      panel.classList.remove("active");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (!text) {
+      return;
+    }
+
+    handleUserMessage(text);
+    input.value = "";
+  });
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", function () {
+      const question = this.getAttribute("data-question") || "";
+      handleUserMessage(question);
+    });
+  });
+
+  initialMessages.forEach((message) => addMessage(message, "bot"));
+});
